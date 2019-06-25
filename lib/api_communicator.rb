@@ -1,6 +1,6 @@
-require 'rest-client'
-require 'json'
-require 'pry'
+require "rest-client"
+require "json"
+require "pry"
 
 def get_character_movies_from_api(character_name)
   #make the web request
@@ -11,26 +11,24 @@ def get_character_movies_from_api(character_name)
   film_array.each do |site|
     site_string = RestClient.get(site)
     site_hash = JSON.parse(site_string)
-  # end
+    # end
     # binding.pry
     # return site_hash
     title_array << site_hash["title"]
     # site_hash["title"]
   end
-    title_array
-  end
+  title_array
+end
 
-
-
-  # iterate over the response hash to find the collection of `films` for the given
-  #   `character`
-  # collect those film API urls, make a web request to each URL to get the info
-  #  for that film
-  # return value of this method should be collection of info about each film.
-  #  i.e. an array of hashes in which each hash reps a given film
-  # this collection will be the argument given to `print_movies`
-  #  and that method will do some nice presentation stuff like puts out a list
-  #  of movies by title. Have a play around with the puts with other info about a given film.
+# iterate over the response hash to find the collection of `films` for the given
+#   `character`
+# collect those film API urls, make a web request to each URL to get the info
+#  for that film
+# return value of this method should be collection of info about each film.
+#  i.e. an array of hashes in which each hash reps a given film
+# this collection will be the argument given to `print_movies`
+#  and that method will do some nice presentation stuff like puts out a list
+#  of movies by title. Have a play around with the puts with other info about a given film.
 
 # p get_character_movies_from_api("Luke Skywalker")
 
@@ -41,12 +39,10 @@ def print_movies(films)
   film_index_array = []
   films.each_with_index do |title, index|
     film_index_array << "#{index + 1}. #{title}"
+  end
+  # print_movies
+  film_index_array
 end
-# print_movies
-film_index_array
-end
-
-
 
 def show_character_movies(character)
   films = get_character_movies_from_api(character)
@@ -57,5 +53,5 @@ end
 
 ## BONUS
 
-# that `get_character_movies_from_api` method is probably pretty long. Does it do more than one job?
-# can you split it up into helper methods?
+that `get_character_movies_from_api` method is probably pretty long. Does it do more than one job?
+can you split it up into helper methods?

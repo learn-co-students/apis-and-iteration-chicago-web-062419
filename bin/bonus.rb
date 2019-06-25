@@ -10,25 +10,27 @@ def get_character_movies_from_api(character_name)
   film_array.each do |site|
     site_string = RestClient.get(site)
     site_hash = JSON.parse(site_string)
+
     title_array << site_hash["title"]
+
   end
-    title_array
-  end
+  title_array
+end
+
+
+
+
 
 def print_movies(films)
   film_index_array = []
   films.each_with_index do |title, index|
     film_index_array << "#{index + 1}. #{title}"
   end
-  # print_movies
   film_index_array
 end
-film_index_array
-end
-
-
 
 def show_character_movies(character)
   films = get_character_movies_from_api(character)
   print_movies(films)
 end
+
